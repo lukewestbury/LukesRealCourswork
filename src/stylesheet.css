@@ -1,4 +1,17 @@
 .root
 {
-	-fx-background-color: dimgrey;
+	-fx-background-color: grey;
 }
+.bottomSide
+{
+    -fx-background-color: darkgrey;
+}
+.listPlaylist-view
+{
+    -fx-background-color: lightgrey;
+}
+.button
+ {
+     -fx-background-color: aqua;
+     -fx-font-family: monospace;
+ }
