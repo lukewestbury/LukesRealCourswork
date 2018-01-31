@@ -17,8 +17,10 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
 
         BorderPane root = new BorderPane();
+        Pane centrePane = new Pane();
 
         VBox leftSide = new VBox();
+        leftSide.getStyleClass().add("leftSide");
         leftSide.setPrefWidth(200);
         HBox bottomSide = new HBox();
         bottomSide.getStyleClass().add("bottomSide");
@@ -26,6 +28,7 @@ public class Main extends Application {
 
         root.setLeft(leftSide);
         root.setBottom(bottomSide);
+        root.setCenter(centrePane);
 
         Scene scene = new Scene(root, 1024, 768);
         stage.setTitle("iMusic");
@@ -34,16 +37,23 @@ public class Main extends Application {
         scene.getStylesheets().add("stylesheet.css");
         stage.show();
 
-        Button playButton = new Button("Play");
-        playButton.setPrefSize(50, 50);
-        playButton.getStyleClass().add("button");
-        playButton.setOnAction((ActionEvent ae) -> playPop(ae));
-        bottomSide.getChildren().add(playButton);
 
-        ListView listPlaylists = new ListView();
-        listPlaylists.setPrefSize(200, 600);
-        listPlaylists.getStyleClass().add("listPlaylist-view");
-        leftSide.getChildren().add(listPlaylists);
+       ListView listPlaylists = new ListView();
+       listPlaylists.setPrefSize(200, 600);
+       listPlaylists.getStyleClass().add("listPlaylist-view");
+       leftSide.getChildren().add(listPlaylists);
+
+
+       TableView songTable = new TableView();
+       songTable.setPrefSize(834, 599);
+       songTable.getStyleClass().add("songTable-view");
+       centrePane.getChildren().add(songTable);
+
+        Button playButton = new Button("Play");
+        playButton.getStyleClass().add("button");
+        playButton.setLayoutY(90);
+       // playButton.setOnAction((ActionEvent ae) -> playPop(ae));
+        bottomSide.getChildren().add(playButton);
     }
 
 
