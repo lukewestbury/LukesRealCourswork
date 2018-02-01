@@ -12,6 +12,15 @@
 }
 .button
  {
-     -fx-background-color: aqua;
-     -fx-font-family: monospace;
+    -fx-background-color: grey;
+    -fx-font: 20 monospace;
+    -fx-text-fill: white;
  }
+.songTable-view
+{
+    -fx-background-color: grey;
+}
+.songInfo-view
+{
+    -fx-background-color: pink;
+}

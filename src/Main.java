@@ -22,13 +22,30 @@ public class Main extends Application {
         VBox leftSide = new VBox();
         leftSide.getStyleClass().add("leftSide");
         leftSide.setPrefWidth(200);
+
         HBox bottomSide = new HBox();
         bottomSide.getStyleClass().add("bottomSide");
-        bottomSide.setPrefHeight(180);
+        bottomSide.setPrefHeight(230);
+
+        VBox songInfo = new VBox();
+        songInfo.setPrefWidth(200);
+
+        HBox playControls = new HBox();
+        playControls.setPrefWidth(624);
+        playControls.setAlignment(Pos.CENTER);
+        playControls.setSpacing(60);
+
+        HBox volumeControls = new HBox();
+        volumeControls.setPrefWidth(200);
+        volumeControls.setAlignment(Pos.CENTER);
+        volumeControls.setSpacing(50);
 
         root.setLeft(leftSide);
         root.setBottom(bottomSide);
         root.setCenter(centrePane);
+        bottomSide.getChildren().add(songInfo);
+        bottomSide.getChildren().add(playControls);
+        bottomSide.getChildren().add(volumeControls);
 
         Scene scene = new Scene(root, 1024, 768);
         stage.setTitle("iMusic");
@@ -38,22 +55,42 @@ public class Main extends Application {
         stage.show();
 
 
-       ListView listPlaylists = new ListView();
-       listPlaylists.setPrefSize(200, 600);
-       listPlaylists.getStyleClass().add("listPlaylist-view");
-       leftSide.getChildren().add(listPlaylists);
+        ListView listPlaylists = new ListView();
+        listPlaylists.setPrefSize(200, 550);
+        listPlaylists.getStyleClass().add("listPlaylist-view");
+        leftSide.getChildren().add(listPlaylists);
 
 
-       TableView songTable = new TableView();
-       songTable.setPrefSize(834, 599);
-       songTable.getStyleClass().add("songTable-view");
-       centrePane.getChildren().add(songTable);
+        TableView songTable = new TableView();
+        songTable.setPrefSize(834, 539);
+        songTable.getStyleClass().add("songTable-view");
+        centrePane.getChildren().add(songTable);
 
-        Button playButton = new Button("Play");
+        Button skipBackButton = new Button("<<");
+        skipBackButton.getStyleClass().add("button");
+        skipBackButton.setPrefSize(125, 50);
+        playControls.getChildren().add(skipBackButton);
+
+        Button playButton = new Button("►");
         playButton.getStyleClass().add("button");
-        playButton.setLayoutY(90);
-       // playButton.setOnAction((ActionEvent ae) -> playPop(ae));
-        bottomSide.getChildren().add(playButton);
+        playButton.setPrefSize(125, 50);
+        playButton.setOnAction((ActionEvent ae) -> playPop(ae));
+        playControls.getChildren().add(playButton);
+
+        Button skipForwardButton = new Button(">>");
+        skipForwardButton.getStyleClass().add("button");
+        skipForwardButton.setPrefSize(125, 50);
+        playControls.getChildren().add(skipForwardButton);
+
+        Button volumeDown = new Button("-");
+        volumeDown.getStyleClass().add("button");
+        volumeDown.setPrefSize(50, 50);
+        volumeControls.getChildren().add(volumeDown);
+
+        Button volumeUp = new Button("+");
+        volumeUp.getStyleClass().add("button");
+        volumeUp.setPrefSize(50, 50);
+        volumeControls.getChildren().add(volumeUp);
     }
 
 
