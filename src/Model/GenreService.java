@@ -29,7 +29,7 @@ public class GenreService {
             System.out.println("Database select all error: " + resultsException.getMessage());
         }
     }
-    public static Genres selectById(int id, DatabaseConnection database) {
+    public static Genres selectById(int genreID, DatabaseConnection database) {
 
         Genres result = null;
 
@@ -38,7 +38,7 @@ public class GenreService {
         try {
             if (statement != null) {
 
-                statement.setInt(1, id);
+                statement.setInt(1, genreID);
                 ResultSet results = database.executeQuery(statement);
 
                 if (results != null) {
@@ -51,13 +51,13 @@ public class GenreService {
 
         return result;
     }
-    public static void deleteById(int id, DatabaseConnection database) {
+    public static void deleteById(int genreID, DatabaseConnection database) {
 
         PreparedStatement statement = database.newStatement("DELETE FROM Genres WHERE genreID = ?");
 
         try {
             if (statement != null) {
-                statement.setInt(1, id);
+                statement.setInt(1, genreID);
                 database.executeUpdate(statement);
             }
         } catch (SQLException resultsException) {

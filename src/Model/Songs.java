@@ -74,4 +74,17 @@ public class Songs {
     public void setSongLength(int songLength) {
         this.songLength = songLength;
     }
+
+    @Override
+    public String toString() {
+        return "Songs{" +
+                "songID=" + songID +
+                ", artistID=" + artistID +
+                ", albumID=" + albumID +
+                ", genreID=" + genreID +
+                ", songName='" + songName + '\'' +
+                ", trackNo=" + trackNo +
+                ", songLength=" + songLength +
+                '}';
+    }
 }

@@ -32,7 +32,7 @@ public class PlaylistService {
             System.out.println("Database select all error: " + resultsException.getMessage());
         }
     }
-    public static Playlists selectById(int id, DatabaseConnection database) {
+    public static Playlists selectById(int playlistID, DatabaseConnection database) {
 
         Playlists result = null;
 
@@ -42,7 +42,7 @@ public class PlaylistService {
         try {
             if (statement != null) {
 
-                statement.setInt(1, id);
+                statement.setInt(1, playlistID);
                 ResultSet results = database.executeQuery(statement);
 
                 if (results != null) {
@@ -56,13 +56,13 @@ public class PlaylistService {
 
         return result;
     }
-    public static void deleteById(int id, DatabaseConnection database) {
+    public static void deleteById(int playlistID, DatabaseConnection database) {
 
         PreparedStatement statement = database.newStatement("DELETE FROM Playlists WHERE playlistID = ?");
 
         try {
             if (statement != null) {
-                statement.setInt(1, id);
+                statement.setInt(1, playlistID);
                 database.executeUpdate(statement);
             }
         } catch (SQLException resultsException) {

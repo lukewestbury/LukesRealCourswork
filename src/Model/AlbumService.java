@@ -32,7 +32,7 @@ public class AlbumService {
             System.out.println("Database select all error: " + resultsException.getMessage());
         }
     }
-    public static Albums selectById(int id, DatabaseConnection database) {
+    public static Albums selectById(int albumID, DatabaseConnection database) {
 
         Albums result = null;
 
@@ -42,7 +42,7 @@ public class AlbumService {
         try {
             if (statement != null) {
 
-                statement.setInt(1, id);
+                statement.setInt(1, albumID);
                 ResultSet results = database.executeQuery(statement);
 
                 if (results != null) {
@@ -57,13 +57,13 @@ public class AlbumService {
 
         return result;
     }
-    public static void deleteById(int id, DatabaseConnection database) {
+    public static void deleteById(int albumID, DatabaseConnection database) {
 
         PreparedStatement statement = database.newStatement("DELETE FROM Albums WHERE albumID = ?");
 
         try {
             if (statement != null) {
-                statement.setInt(1, id);
+                statement.setInt(1, albumID);
                 database.executeUpdate(statement);
             }
         } catch (SQLException resultsException) {

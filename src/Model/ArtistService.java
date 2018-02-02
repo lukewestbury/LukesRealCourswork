@@ -32,15 +32,15 @@ public class ArtistService {
     }
 
 
-    public static Artists selectById(int id, DatabaseConnection database){
+    public static Artists selectById(int artistID, DatabaseConnection database){
         Artists result = null;
 
-        PreparedStatement statement = database.newStatement("SELECT artistID, artistName, bio, genreID FROM Artists WHERE id = ?");
+        PreparedStatement statement = database.newStatement("SELECT artistID, artistName, bio, genreID FROM Artists WHERE artistID = ?");
 
         try {
             if (statement != null) {
 
-                statement.setInt(1, id);
+                statement.setInt(1, artistID);
                 ResultSet results = database.executeQuery(statement);
 
                 if (results != null) {
@@ -54,13 +54,13 @@ public class ArtistService {
         return result;
     }
 
-    public static void deleteById(int id, DatabaseConnection database) {
+    public static void deleteById(int artistID, DatabaseConnection database) {
 
-        PreparedStatement statement = database.newStatement("DELETE FROM Artists WHERE id = ?");
+        PreparedStatement statement = database.newStatement("DELETE FROM Artists WHERE artistID = ?");
 
         try {
             if (statement != null) {
-                statement.setInt(1, id);
+                statement.setInt(1, artistID);
                 database.executeUpdate(statement);
             }
         } catch (SQLException resultsException) {
@@ -82,7 +82,7 @@ public class ArtistService {
                 database.executeUpdate(statement);
             }
             else {
-                PreparedStatement statement = database.newStatement("UPDATE Artists SET artistName = ?, artistBio = ?, genreID = ? WHERE id = ?");
+                PreparedStatement statement = database.newStatement("UPDATE Artists SET artistName = ?, artistBio = ?, genreID = ? WHERE artistID = ?");
                 statement.setString(1, itemToSave.getName());
                 statement.setString(2, itemToSave.getBio());
                 statement.setInt(3, itemToSave.getGenreID());

@@ -1,3 +1,6 @@
+import Controller.MainController;
+import Model.Artists;
+import Model.Songs;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
@@ -5,6 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.HBox;
@@ -12,6 +16,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+
+    MainController controller;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -66,6 +72,24 @@ public class Main extends Application {
         songTable.getStyleClass().add("songTable-view");
         centrePane.getChildren().add(songTable);
 
+        TableColumn<Songs, String> songNameColumn = new TableColumn<>("Name");
+        songNameColumn.setCellValueFactory(new PropertyValueFactory<>("songName"));
+        songNameColumn.prefWidthProperty().bind(songTable.widthProperty().multiply(0.35));
+        songNameColumn.setResizable(false);
+        songTable.getColumns().add(songNameColumn);
+
+        TableColumn<Songs, String> artistNameColumn = new TableColumn<>("Artist");
+        artistNameColumn.setCellValueFactory(new PropertyValueFactory<>("artistName"));
+        artistNameColumn.prefWidthProperty().bind(songTable.widthProperty().multiply(0.31));
+        artistNameColumn.setResizable(false);
+        songTable.getColumns().add(artistNameColumn);
+
+        TableColumn<Songs, String> songLengthColumn = new TableColumn<>("Length");
+        songLengthColumn.setCellValueFactory(new PropertyValueFactory<>("songLength"));
+        songLengthColumn.prefWidthProperty().bind(songTable.widthProperty().multiply(0.31));
+        songLengthColumn.setResizable(false);
+        songTable.getColumns().add(songLengthColumn);
+
         Button skipBackButton = new Button("<<");
         skipBackButton.getStyleClass().add("button");
         skipBackButton.setPrefSize(125, 50);
@@ -91,6 +115,9 @@ public class Main extends Application {
         volumeUp.getStyleClass().add("button");
         volumeUp.setPrefSize(50, 50);
         volumeControls.getChildren().add(volumeUp);
+
+        controller = new MainController(listPlaylists, songTable);
+
     }
 
 

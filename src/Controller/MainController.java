@@ -29,7 +29,7 @@ public class MainController {
         updateLists(0, 0);
     }
 
-    private void updateLists(int selectPlaylistID, int selectSongID) {
+    private void updateLists(int selectedPlaylistID, int selectedSongID) {
 
         playlistsArrayList.clear();
         PlaylistService.selectAll(playlistsArrayList, database);
@@ -38,6 +38,29 @@ public class MainController {
 
         songTable.getItems().clear();
         SongsService.selectAll(songTable.getItems(), database);
+
+        if (selectedPlaylistID != 0) {
+            for (int n = 0; n < listPlaylists.getItems().size(); n++) {
+                if (listPlaylists.getItems().get(n).getPlaylistID() == selectedPlaylistID) {
+                    listPlaylists.getSelectionModel().select(n);
+                    listPlaylists.getFocusModel().focus(n);
+                    listPlaylists.scrollTo(n);
+                    break;
+                }
+            }
+        }
+
+        if (selectedSongID != 0) {
+            for (int n = 0; n < songTable.getItems().size(); n++) {
+                if (songTable.getItems().get(n).getSongID() == selectedSongID) {
+                    songTable.getSelectionModel().select(n);
+                    songTable.getFocusModel().focus(n);
+                    songTable.scrollTo(n);
+                    break;
+                }
+            }
+        }
     }
+
 
 }

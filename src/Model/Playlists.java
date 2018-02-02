@@ -44,4 +44,14 @@ public class Playlists {
     public void setPlaylistLength(int playlistLength) {
         this.playlistLength = playlistLength;
     }
+
+    @Override
+    public String toString() {
+        return "Playlists{" +
+                "playlistID=" + playlistID +
+                ", playlistName='" + playlistName + '\'' +
+                ", playlistBio='" + playlistBio + '\'' +
+                ", playlistLength=" + playlistLength +
+                '}';
+    }
 }
