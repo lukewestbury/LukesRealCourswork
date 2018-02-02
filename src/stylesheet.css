@@ -6,9 +6,17 @@
 {
     -fx-background-color: darkgrey;
 }
+.leftSide
+{
+    -fx-background-color: lightgrey;
+}
 .listPlaylist-view
 {
     -fx-background-color: lightgrey;
+}
+.songTable-view
+{
+    -fx-background-color: grey;
 }
 .button
  {
@@ -16,10 +24,6 @@
     -fx-font: 20 monospace;
     -fx-text-fill: white;
  }
-.songTable-view
-{
-    -fx-background-color: grey;
-}
 .songInfo-view
 {
     -fx-background-color: pink;
