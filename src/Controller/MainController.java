@@ -37,7 +37,7 @@ public class MainController {
         listPlaylists.setItems(FXCollections.observableList(playlistsArrayList));
 
         songTable.getItems().clear();
-        Song
+        SongsService.selectAll(songTable.getItems(), database);
     }
 
 }
