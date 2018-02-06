@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     MainController controller;
+    public static int volume = 50;
+    public static Label currentVolume = new Label(Integer.toString(volume));
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -44,7 +46,7 @@ public class Main extends Application {
         HBox volumeControls = new HBox();
         volumeControls.setPrefWidth(200);
         volumeControls.setAlignment(Pos.CENTER);
-        volumeControls.setSpacing(50);
+        volumeControls.setSpacing(30);
 
         root.setLeft(leftSide);
         root.setBottom(bottomSide);
@@ -93,6 +95,7 @@ public class Main extends Application {
         Button skipBackButton = new Button("<<");
         skipBackButton.getStyleClass().add("button");
         skipBackButton.setPrefSize(125, 50);
+        skipBackButton.setOnAction((ActionEvent ae) -> skipBackwardControl(ae));
         playControls.getChildren().add(skipBackButton);
 
         Button playButton = new Button("►");
@@ -104,17 +107,24 @@ public class Main extends Application {
         Button skipForwardButton = new Button(">>");
         skipForwardButton.getStyleClass().add("button");
         skipForwardButton.setPrefSize(125, 50);
+        skipForwardButton.setOnAction((ActionEvent ae) -> skipForwardControl(ae));
         playControls.getChildren().add(skipForwardButton);
 
         Button volumeDown = new Button("-");
         volumeDown.getStyleClass().add("button");
         volumeDown.setPrefSize(50, 50);
+        volumeDown.setOnAction((ActionEvent ae) -> volumeDownControl(ae));
         volumeControls.getChildren().add(volumeDown);
 
         Button volumeUp = new Button("+");
         volumeUp.getStyleClass().add("button");
         volumeUp.setPrefSize(50, 50);
+        volumeUp.setOnAction((ActionEvent ae) -> volumeUpControl(ae));
         volumeControls.getChildren().add(volumeUp);
+
+        currentVolume.getStyleClass().add("button");
+        currentVolume.setPrefSize(50, 50);
+        volumeControls.getChildren().add(currentVolume);
 
         controller = new MainController(listPlaylists, songTable);
 
@@ -125,10 +135,37 @@ public class Main extends Application {
         Alert playAlert = new Alert(Alert.AlertType.INFORMATION);
         playAlert.setTitle("Hello Title");
         playAlert.setHeaderText("Header");
-        playAlert.setContentText("Wow, Hello!!");
+        playAlert.setContentText("Play Button has been selected");
         playAlert.showAndWait();
     }
 
+    public static void skipForwardControl(ActionEvent ae) {
+        Alert skipForwardAlert = new Alert(Alert.AlertType.INFORMATION);
+        skipForwardAlert.setTitle("Hello Title");
+        skipForwardAlert.setHeaderText("Header");
+        skipForwardAlert.setContentText("Skip Forward");
+        skipForwardAlert.showAndWait();
+    }
+
+    public static void skipBackwardControl(ActionEvent ae) {
+        Alert skipBackwardAlert = new Alert(Alert.AlertType.INFORMATION);
+        skipBackwardAlert.setTitle("Hello Title");
+        skipBackwardAlert.setHeaderText("Header");
+        skipBackwardAlert.setContentText("Skip Back");
+        skipBackwardAlert.showAndWait();
+    }
+
+    public static void volumeUpControl(ActionEvent ae) {
+        volume = volume + 1;
+        System.out.println(volume);
+        currentVolume.setText(Integer.toString(volume));
+    }
+
+    public static void volumeDownControl(ActionEvent ae) {
+        volume = volume - 1;
+        System.out.println(volume);
+        currentVolume.setText(Integer.toString(volume));
+    }
 
     public static void main(String[] args) {
         launch(args);
