@@ -70,7 +70,7 @@ public class Main extends Application {
 
 
         TableView songTable = new TableView();
-        songTable.setPrefSize(834, 539);
+        songTable.setPrefSize(834, 549);
         songTable.getStyleClass().add("songTable-view");
         centrePane.getChildren().add(songTable);
 
